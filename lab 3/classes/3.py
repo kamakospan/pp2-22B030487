@@ -3,13 +3,13 @@
 # The Rectangle class has a method which can compute the area.
 
 class Rectange(Shape):
-    def __init__(self, l, w):
+    def __init__(self, length, width):
         super().__init__()
-        self.l = length
-        self.w = width
+        self.length = length
+        self.width = width
 
     def area(self):
-        print(self.l * self.w)
+        print(self.length * self.width)
 
 
 rect = Rectange(2,3)
