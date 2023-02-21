@@ -6,4 +6,4 @@ list3 = [True, False, False]
 list1 = ["abc", 34, True, 40, "male"] 
 
 # lists are defined as objects in class <list>
-<class 'list'>
+# <class 'list'>
