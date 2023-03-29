@@ -8,4 +8,5 @@ with open("row.txt") as file:
         if(len(result)!=0):
             for i in result:
                 print(i)
-                
+
+# ^   Matches the beginning

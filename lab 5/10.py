@@ -1,7 +1,7 @@
 # Write a Python program to convert a given camel case string to snake case.
 
 import re
-text = "ThisProgramTurnsThisStringIntoSnakeCase"
+text = "IWasCamelCaseButThisProgramTurnedMeIntoSnakeCase"
 result = re.findall(r"[A-Z][a-z]*", text)
 snake_case=[]
 for i in result:

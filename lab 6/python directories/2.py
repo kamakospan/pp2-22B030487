@@ -4,7 +4,7 @@
 import os
 import sys
 
-path = r'C:\Users\miss_\OneDrive\Документы\pp2\lab 6\python directories\iwillbedeleted.txt'
+path = r'C:\Users\miss_\OneDrive\Документы\pp2\lab 6\A.txt'
 path1 = os.access(__file__, os.F_OK)
 print("Does the path exist? ", path1)
 
