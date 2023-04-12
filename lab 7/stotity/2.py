@@ -7,22 +7,22 @@ from tkinter import filedialog
 
 Playlist=[]
 
-allsongs = os.listdir(r"C:\Users\miss_\OneDrive\Документы\pp2\lab 7\stotity")
+allsongs = os.listdir(r"C:\Users\miss_\OneDrive\Рабочий стол\pp2 labs\lab 7\stotity")
 for song in allsongs:
        if song.endswith(".mp3"):
            Playlist.append(song)
 
 pg.init()
 mix.init()
-clock=pg.time.Clock()
+clock=pg.time.Clock() # 
 
 screen=pg.display.set_mode((550, 300))
 pg.display.set_caption("kama creates stotity")
 
 
-bg=pg.Surface((550,300))
+bg=pg.Surface((550,300)) #
 pg.Surface.fill(bg,(90,241,87))
-f1=pg.font.SysFont('montserrat', 30, True)
+f1=pg.font.SysFont('montserrat', 30, True) #
 f2=pg.font.SysFont('montserrat', 15)
 
 
@@ -30,10 +30,8 @@ f2=pg.font.SysFont('montserrat', 15)
 btnplay=pg.image.load("play.png")
 btnpause=pg.image.load("pause.png")
 
-
 btnnext=pg.image.load("next.png")
 btnnext2=pg.image.load("next.png")
-
 
 btnprev=pg.image.load("previous.png")
 btnprev2=pg.image.load("previous.png")
@@ -63,7 +61,7 @@ while True:
                     pg.mixer.music.unpause()
                     ch=1
             if event.key==pg.K_RIGHT:
-                currid=(currid+1)%3
+                currid=(currid+1)%8
                 pg.mixer.music.stop()
                 pg.mixer.music.load(Playlist[currid])
                 pg.mixer.music.play()
@@ -71,7 +69,7 @@ while True:
                 if not ch :
                     pg.mixer.music.pause()
             if event.key==pg.K_LEFT:
-                currid=(currid-1+3)%3
+                currid=(currid-1+8)%8
                 pg.mixer.music.stop()
                 pg.mixer.music.load(Playlist[currid])
                 pg.mixer.music.play()
