@@ -25,7 +25,7 @@ while True:
     elif keys[pygame.K_RIGHT] and c_x < 725:
         c_x += c_speed
 
-    if keys[pygame.K_UP] and c_y > 25 :
+    if keys[pygame.K_UP] and c_y > 25 : 
         c_y -= c_speed
     elif keys[pygame.K_DOWN] and c_y < 725:
         c_y += c_speed

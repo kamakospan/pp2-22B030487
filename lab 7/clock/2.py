@@ -10,7 +10,7 @@ clock=pg.time.Clock()
 bg = pg.image.load('bgpic.png')
 
 minhand=pg.image.load('min.png')
-minrec=minhand.get_rect()
+minrec=minhand.get_rect() 
 minrec.center=(145,155)
 mincnt=-5
 

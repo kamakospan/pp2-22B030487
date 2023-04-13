@@ -49,7 +49,7 @@ buttonselect = (22, 81, 30, 34)
 #Function to draw color box
 def drawrectangle():    
     pygame.gfxdraw.box(drawingwindow, col1, black)
-    pygame.gfxdraw.box(drawingwindow, col2, blue)
+    pygame.gfxdraw.box(drawingwindow, col2, blue) 
     pygame.gfxdraw.box(drawingwindow, col3, red)
     pygame.gfxdraw.box(drawingwindow, col4, green)
     pygame.gfxdraw.box(drawingwindow, col5, pink)
@@ -64,7 +64,6 @@ exit_game = False
 
 #Gameloop
 while not exit_game:
-    
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
