@@ -18,7 +18,6 @@ while True:
         if events.type == pygame.QUIT:
             pygame.quit()
             quit()
-    
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_LEFT] and c_x > 25 :

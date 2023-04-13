@@ -61,7 +61,7 @@ while True:
                     pg.mixer.music.unpause()
                     ch=1
             if event.key==pg.K_RIGHT:
-                currid=(currid+1)%8
+                currid=(currid+1)%9 # 
                 pg.mixer.music.stop()
                 pg.mixer.music.load(Playlist[currid])
                 pg.mixer.music.play()
@@ -69,7 +69,7 @@ while True:
                 if not ch :
                     pg.mixer.music.pause()
             if event.key==pg.K_LEFT:
-                currid=(currid-1+8)%8
+                currid=(currid-1+9)%9
                 pg.mixer.music.stop()
                 pg.mixer.music.load(Playlist[currid])
                 pg.mixer.music.play()
@@ -78,14 +78,12 @@ while True:
                     pg.mixer.music.pause()
                    
 
-
-                  
-    text1=f1.render("From the playlist: The greatest music of all times", True, (198,165,15))
+    text1=f1.render("From the playlist: The greatest music of all times", True, (198,165,15)) #
     text2=f2.render(Playlist[currid], True, (99,20,108))        
-    screen.blit(bg, (0,0))
+    screen.blit(bg, (0,0)) #
     screen.blit(text1,(25,25))
     screen.blit(text2,(100,50))
-    if ch:
+    if ch: # if smth is playing
         screen.blit(btnpause, (200,90))
     else:
         screen.blit(btnplay, (195,90))

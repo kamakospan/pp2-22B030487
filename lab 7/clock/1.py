@@ -2,10 +2,6 @@ import pygame, sys
 from datetime import datetime
 import math
 
-
-
-
-
 def main():
 
     # pygame initialization
