@@ -6,12 +6,12 @@ screen = pygame.display.set_mode((600, 600))
 
 clock = pygame.time.Clock()
 
-c_x = 350
-c_y = 350 
-c_speed = 25
+c_x = 300
+c_y = 300
+c_speed = 15
 
 while True:
-    screen.fill("red")
+    screen.fill("green")
     pygame.draw.circle(screen, "pink", (c_x,c_y), 25)
 
     for events in pygame.event.get():
