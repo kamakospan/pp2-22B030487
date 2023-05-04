@@ -28,7 +28,7 @@ def delete(sn):
 
 mode="enter";
 while True:
-    print("Type 'enter' if you want to add more data and type 'stop' to break")
+    print("You can add, update, and delete with my help to your phonebook. Type 'enter' if you want to add more data and type 'stop' to break")
     mode=input()
     if mode=="stop":
         break
@@ -65,7 +65,7 @@ while True:
     if mode=="Stop":
         break
     cursor.execute("""SELECT * FROM PhoneBook""")
-    print(cursor.fetchall())
+    print(cursor.fetchall()) # SHOWING EVERYTHING THAT'S IN THE DB
     print("Enter surname")
     idtochange=input()
     print("What you want to change? name/number")
@@ -85,7 +85,7 @@ while True:
     print("Enter surname")
     idtodelete=input()
     delete(idtodelete)
-
+    print("u have successfully deleted data from your phonebook")
 
 connection.commit()
 cursor.close()
