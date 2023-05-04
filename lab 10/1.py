@@ -1,12 +1,12 @@
 import csv
-import psycopg2 as pgsql
+import psycopg2
 
 
-connection=pgsql.connect(host="localhost", dbname="postgres", user="postgres", 
+connection=psycopg2.connect(host="localhost", dbname="postgres", user="postgres", 
                          password="12345", port=5432)
-cur=connection.cursor()
-
-cur.execute("""CREATE TABLE IF NOT EXISTS PhoneBook (
+cursor=connection.cursor()
+# locale default
+cursor.execute("""CREATE TABLE IF NOT EXISTS PhoneBook (
     surname VARCHAR(255),
     name VARCHAR(255),
     number INT
@@ -14,17 +14,17 @@ cur.execute("""CREATE TABLE IF NOT EXISTS PhoneBook (
 """)
 
 def update(sn, mode, newv):
-    cur.execute("""UPDATE PhoneBook
+    cursor.execute("""UPDATE PhoneBook
     SET {} = '{}'
     WHERE surname = '{}'
     """.format(mode,newv,sn))
 
 def delete(sn):
-    cur.execute("""DELETE FROM Phonebook
+    cursor.execute("""DELETE FROM Phonebook
     WHERE surname='{}'
     """.format(sn))
 
-#INSERTING DATA--------------------------
+#INSERTING DATA
 
 mode="enter";
 while True:
@@ -40,7 +40,7 @@ while True:
     print("enter number:")
     mytuple.append(input())
     mytuple=tuple(mytuple)
-    cur.execute("""INSERT INTO PhoneBook (surname, name ,number) VALUES
+    cursor.execute("""INSERT INTO PhoneBook (surname, name ,number) VALUES
     {};
     """.format(mytuple))
 
@@ -49,22 +49,22 @@ while True:
     mode=input()
     if mode=="no":
         break
-    print("enter the name of the file")
+    print("Enter the name of the file")
     mode=input()
     with open(mode+'.csv', 'r') as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:
-            cur.execute("INSERT INTO PhoneBook VALUES (%s,%s,%s)",row)
+            cursor.execute("INSERT INTO PhoneBook VALUES (%s,%s,%s)",row)
 
 #UPDATING DATA---------
 while True:
-    print("Type 'update' to update some data or 'stop' to break")
+    print("Type 'Update' to update some data or 'Stop' to break. Any other spelling won't work so type in exactly what i asked")
     mode=input()
-    if mode=="stop":
+    if mode=="Stop":
         break
-    cur.execute("""SELECT * FROM PhoneBook""")
-    print(cur.fetchall())
+    cursor.execute("""SELECT * FROM PhoneBook""")
+    print(cursor.fetchall())
     print("Enter surname")
     idtochange=input()
     print("What you want to change? name/number")
@@ -75,17 +75,17 @@ while True:
 
 #DELETING DATA-----------
 while True:
-    print("want to delete some data? yes/no")
+    print("Do you want to delete data? Yes/No")
     mode=input()
-    if mode=="no":
+    if mode=="No":
         break
-    cur.execute("""SELECT * FROM PhoneBook""")
-    print(cur.fetchall())
+    cursor.execute("""SELECT * FROM PhoneBook""")
+    print(cursor.fetchall())
     print("Enter surname")
     idtodelete=input()
     delete(idtodelete)
 
 
 connection.commit()
-cur.close()
+cursor.close()
 connection.close()
