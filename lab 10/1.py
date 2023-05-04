@@ -24,7 +24,7 @@ def delete(sn):
     WHERE surname='{}'
     """.format(sn))
 
-#INSERTING DATA
+#INSERTING DATA from the user console
 
 mode="enter";
 while True:
@@ -33,17 +33,18 @@ while True:
     if mode=="stop":
         break
     mytuple=[]
-    print("enter surname:")
+    print("enter last name:")
     mytuple.append(input())
     print("enter name:")
     mytuple.append(input())
     print("enter number:")
     mytuple.append(input())
     mytuple=tuple(mytuple)
-    cursor.execute("""INSERT INTO PhoneBook (surname, name ,number) VALUES
+    cursor.execute("""INSERT INTO PhoneBook (surname, name, number) VALUES
     {};
     """.format(mytuple))
 
+# inserting data from a csv file in this rep
 while True:
     print("Want to insert data from csv file? yes/no:")
     mode=input()
@@ -57,7 +58,7 @@ while True:
         for row in reader:
             cursor.execute("INSERT INTO PhoneBook VALUES (%s,%s,%s)",row)
 
-#UPDATING DATA---------
+#UPDATING DATA
 while True:
     print("Type 'Update' to update some data or 'Stop' to break. Any other spelling won't work so type in exactly what i asked")
     mode=input()

@@ -1,12 +1,12 @@
-import psycopg2 as pgsql
+import psycopg2
 
-connection=pgsql.connect(host="localhost", dbname="postgres", user="postgres", 
+connection=psycopg2.connect(host="localhost", dbname="postgres", user="postgres", 
                          password="12345", port=5432)
-cur=connection.cursor()
+cursor=connection.cursor()
 
 #PROCEDURES & functions
 #1 searching by name
-cur.execute("""CREATE OR REPLACE FUNCTION search_from_pb_byname(a character varying)
+cursor.execute("""CREATE OR REPLACE FUNCTION search_from_pb_byname(a character varying)
   RETURNS SETOF PhoneBook
 AS
 $$
@@ -17,8 +17,8 @@ $$
 language sql;
 """)
 #2 updating if exist inserting if not
-cur.execute("""CREATE OR REPLACE PROCEDURE insert_to_pb(a character varying, b character varying, c integer)
-LANGUAGE plpgsql
+cursor.execute("""CREATE OR REPLACE PROCEDURE insert_to_pb(a character varying, b character varying, c integer)
+LANGUAGE plpsycopg2
 AS $$
 DECLARE v_exists INTEGER;
 BEGIN
@@ -36,7 +36,7 @@ $$;
 """)
 #3 inserting in loop
 
-cur.execute("""CREATE OR REPLACE PROCEDURE insert_loop()
+cursor.execute("""CREATE OR REPLACE PROCEDURE insert_loop()
 LANGUAGE plpgsql
 AS $$
 DECLARE
@@ -53,7 +53,7 @@ END
 $$;""")
 
 #4pagination
-cur.execute("""CREATE OR REPLACE FUNCTION paginating(a integer, b integer)
+cursor.execute("""CREATE OR REPLACE FUNCTION paginating(a integer, b integer)
 RETURNS SETOF PhoneBook
 AS $$
     SELECT * FROM PhoneBook 
@@ -63,7 +63,7 @@ $$
 language sql;""")
 
 #5deleting
-cur.execute("""CREATE OR REPLACE PROCEDURE delete_from_pb(a character varying, b character varying)
+cursor.execute("""CREATE OR REPLACE PROCEDURE delete_from_pb(a character varying, b character varying)
 LANGUAGE plpgsql
 AS $$
 DECLARE v_exists INTEGER;
@@ -77,19 +77,19 @@ END;
 $$;""")
 
 #executing
-cur.execute("""CALL insert_to_pb('fromp','tosql',465465654);
+cursor.execute("""CALL insert_to_pb('fromp','tosql',465465654);
 """)
-cur.execute("""SELECT *
+cursor.execute("""SELECT *
 FROM search_from_pb_byname('lol');""")
-print(cur.fetchall())
-cur.execute("""CALL insert_to_pb('pip', 'pup', 66);""")
-cur.execute("""SELECT *
+print(cursor.fetchall())
+cursor.execute("""CALL insert_to_pb('pip', 'pup', 66);""")
+cursor.execute("""SELECT *
 FROM paginating(5, 2);""")
-print(cur.fetchall())
-cur.execute("""CALL delete_from_pb('fromp', 'tosql');""")
-cur.execute("""CALL insert_loop();""")
+print(cursor.fetchall())
+cursor.execute("""CALL delete_from_pb('fromp', 'tosql');""")
+cursor.execute("""CALL insert_loop();""")
 
 
 connection.commit()
-cur.close()
+cursor.close()
 connection.close()
