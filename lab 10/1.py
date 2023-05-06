@@ -28,7 +28,7 @@ def delete(sn):
 
 mode="enter";
 while True:
-    print("You can add, update, and delete with my help to your phonebook. Type 'enter' if you want to add more data and type 'stop' to break")
+    print("You can add, update, and delete with my help to phonebook. Type 'enter' if you want to add more data and type 'stop' to break")
     mode=input()
     if mode=="stop":
         break
